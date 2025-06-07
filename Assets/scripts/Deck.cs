@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Deck : MonoBehaviour
 {
@@ -56,6 +57,19 @@ public class Deck : MonoBehaviour
                 }
                 currentNum -= 3;
                 cardNumData[i] = 0;
+                GameMap.instance.totalNum -= 3;
+                if(GameMap.instance.totalNum<=0)
+                {
+                    Debug.Log("所有卡片消除完毕");
+                    //TODO切换场景去过度 第一关
+                    SceneManager.LoadScene("midScene");
+                     
+                }
+                else
+                {
+                    //更新卡槽
+                    this.updateCard();
+                }
                 //更新卡槽 
                 this.updateCard();
                 return true;

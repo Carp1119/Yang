@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/lv_2_Scene.unity
     guid: e0c64825e776ac24490532921f95e18d
+  - enabled: 1
+    path: Assets/Scenes/midScene.unity
+    guid: f9693d9756b48e9449c55447d7467ef0
   m_configObjects: {}
