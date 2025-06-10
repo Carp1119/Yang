@@ -284,6 +284,7 @@ GameObject:
   - component: {fileID: 416006262}
   - component: {fileID: 416006264}
   - component: {fileID: 416006263}
+  - component: {fileID: 416006265}
   m_Layer: 5
   m_Name: Image (1)
   m_TagString: Untagged
@@ -349,6 +350,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 416006261}
   m_CullTransparentMesh: 1
+--- !u!95 &416006265
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416006261}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 80d8173f127abeb43abcd86e7b6e7892, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &725305125
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,7 +691,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b486f05295f4d8b48b7bf4ee6f457c19, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -766,6 +788,7 @@ GameObject:
   - component: {fileID: 1164343383}
   - component: {fileID: 1164343385}
   - component: {fileID: 1164343384}
+  - component: {fileID: 1164343386}
   m_Layer: 5
   m_Name: Image (2)
   m_TagString: Untagged
@@ -831,6 +854,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1164343382}
   m_CullTransparentMesh: 1
+--- !u!95 &1164343386
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164343382}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 80d8173f127abeb43abcd86e7b6e7892, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1459269370
 GameObject:
   m_ObjectHideFlags: 0
@@ -998,6 +1042,7 @@ GameObject:
   - component: {fileID: 1676556597}
   - component: {fileID: 1676556599}
   - component: {fileID: 1676556598}
+  - component: {fileID: 1676556600}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -1063,6 +1108,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1676556596}
   m_CullTransparentMesh: 1
+--- !u!95 &1676556600
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676556596}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 80d8173f127abeb43abcd86e7b6e7892, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2051271960
 GameObject:
   m_ObjectHideFlags: 0
@@ -1074,6 +1140,7 @@ GameObject:
   - component: {fileID: 2051271961}
   - component: {fileID: 2051271963}
   - component: {fileID: 2051271962}
+  - component: {fileID: 2051271964}
   m_Layer: 5
   m_Name: Image (3)
   m_TagString: Untagged
@@ -1139,6 +1206,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2051271960}
   m_CullTransparentMesh: 1
+--- !u!95 &2051271964
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051271960}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 80d8173f127abeb43abcd86e7b6e7892, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1471710408681180133
 PrefabInstance:
   m_ObjectHideFlags: 0

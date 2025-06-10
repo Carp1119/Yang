@@ -11,11 +11,13 @@ public class LoadingScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AudioMgr.Instance().PlayBGM("MainMusic",this.gameObject);
         //按钮点击响应，监听，调用changeScene回调函数
         gamestartBtn.onClick.AddListener(this.changeScene);
     }
     void changeScene()
     {
+        AudioMgr.Instance().PlaySound("ButtonClick",gamestartBtn.gameObject);
         //切换场景到主菜单界面
         SceneManager.LoadScene("menuScene");
     }

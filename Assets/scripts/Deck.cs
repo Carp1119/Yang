@@ -16,6 +16,10 @@ public class Deck : MonoBehaviour
     Card[] cards = null;
     int[] cardNumData = null;//卡片数量
 
+    //失败弹窗的预制体
+    public GameObject loseDlgPrefab = null;
+    public GameObject winDlgPrefab = null;
+
     void Start()//初始化
     {
         //脚本单例赋值
@@ -51,7 +55,9 @@ public class Deck : MonoBehaviour
                 {
                     if (cards[j] != null && cards[j].id == i)
                     {
-                        GameObject.Destroy(cards[j].gameObject);
+                        GameMap.instance.deleteCard(cards[j].layerNum);
+                        
+
                         cards[j] = null;
                     }
                 }
@@ -61,9 +67,21 @@ public class Deck : MonoBehaviour
                 if(GameMap.instance.totalNum<=0)
                 {
                     Debug.Log("所有卡片消除完毕");
-                    //TODO切换场景去过度 第一关
-                    SceneManager.LoadScene("midScene");
-                     
+                    
+                    if(GameMap .instance.level==1)
+                    {
+                        //TODO切换场景去过度 第一关
+                        SceneManager.LoadScene("midScene");
+                    }else if(GameMap .instance .level==2)
+                    {
+                        //胜利弹窗，第二关
+                        GameObject winDlg = Instantiate(this.winDlgPrefab);
+                        winDlg.transform.SetParent(this.transform.parent);
+                        winDlg.transform.localPosition = Vector3.zero;
+
+                    }
+
+
                 }
                 else
                 {
@@ -74,6 +92,15 @@ public class Deck : MonoBehaviour
                 this.updateCard();
                 return true;
             }
+        }
+        if(currentNum>=7)//卡槽满了
+        {
+            //游戏闯关失败
+            GameObject loseDlg = Instantiate(this.loseDlgPrefab);
+            loseDlg.transform.SetParent(this.transform.parent);
+            loseDlg.transform.localPosition = Vector3.zero;
+             
+
         }
         return false;
     }

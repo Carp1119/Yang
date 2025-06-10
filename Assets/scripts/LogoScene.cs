@@ -8,6 +8,7 @@ public class LogoScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AudioMgr.Instance().PlaySound("logo", this.gameObject);
         //Debug.Log("Start 启动");
         //定时器：2秒钟调用函数changeScene
         Invoke("changeScene",2);
@@ -21,6 +22,7 @@ public class LogoScene : MonoBehaviour
 
     void changeScene()
     {
+        
         //语句块 函数体
         //切换场景
         SceneManager.LoadScene("loadingScene");

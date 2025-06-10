@@ -13,6 +13,7 @@ public class Card : MonoBehaviour, IPointerClickHandler
     public Sprite[] sprites = null;
 
     bool canClick = true;//点击开关
+    public  bool isIndeck = false;
 
     //用来当做层级判断,处理遮挡关系
     //layerNum 越小,越在下面,越大,越在上面
@@ -22,6 +23,9 @@ public class Card : MonoBehaviour, IPointerClickHandler
     //记录该卡片下层的卡片以及数量
     Card[] overCards = new Card[100];
     public int overCardsNum;
+
+    public Vector3 point;
+    
 
     void Start()
     {
@@ -59,6 +63,7 @@ public class Card : MonoBehaviour, IPointerClickHandler
     }
     public void setID(int _id, int _layerNum)//形参:  _id 识别类型码, _layerNum层级关系码
     {
+        point = transform.localPosition;
         this.id = _id;
         this.layerNum = _layerNum;
         //TODO  既然设置了不同的ID,更换对应的图片
@@ -66,6 +71,7 @@ public class Card : MonoBehaviour, IPointerClickHandler
         //GetComponent 获取组件函数
         sp = this.GetComponent<Image>();
         sp.sprite = this.sprites[this.id]; //需要图片资源
+       
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -89,10 +95,12 @@ public class Card : MonoBehaviour, IPointerClickHandler
         //第一个参数是目的地(父节点空间坐标)坐标
         //第二个参数是时间跨度
         float x = -365 + Deck.Instance.currentNum * 123;
+        point = transform.localPosition;
         //卡槽添加卡片
         if (Deck.Instance.addCard(this))
         {
             canClick = false;
+            isIndeck = true;
             //动作队列
             Sequence sq = DOTween.Sequence();
             //移动动作
@@ -103,6 +111,7 @@ public class Card : MonoBehaviour, IPointerClickHandler
                 Deck.Instance.check();
                 Deck.Instance.optCard = true;//允许操作下一张牌
             });
+            sq.Play();//动作队列运行
             for (int i = 0; i < overCardsNum; i++)
             {
                 overCards[i].overNum--;
@@ -111,9 +120,11 @@ public class Card : MonoBehaviour, IPointerClickHandler
                     overCards[i].GetComponent<Image>().color = new Color(1, 1, 1, 1);
                 }
             }
-            overCardsNum--;
+          
 
-            sq.Play();//动作队列运行
+            
         }
     }
+
+
 }

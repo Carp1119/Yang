@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,11 +13,13 @@ public class GameMap : MonoBehaviour
 
     public int level = 1;//默认值 在界面上配置
     public int totalNum = 27;//默认值 在界面上配置
+
     int[] data = null;//数据
     Card[] cards = null;//关卡所有卡片
 
     void Start()//初始化
     {
+        DOTween.SetTweensCapacity(3000, 200);
         GameMap.instance = this;
         //本地坐标归零(画布中心)
         transform.localPosition = Vector3.zero;
@@ -222,16 +225,25 @@ public class GameMap : MonoBehaviour
                     //第四步:调整节点的坐标 位置
                     //设置在地图的原点位置
                     float x = -270 + k * 90;
-                    float y = -100+j*100;
-                    if (j % 2 == 0)
+                    float y = j*100;
+                    if (j <3)
                     {
-                        x -= 20;
-                        x -= i * 10;
+                        y -= 10;
+                        y -= i * 8;
                     }
-                    else
+                    else if(j>3)
                     {
-                        x += 20;
-                        x += i * 10;
+                        y+= 10;
+                        y += i * 8;
+                    }
+                    if(k<3)
+                    {
+                        x -= 10;
+                        x -= i * 8;
+                    }else if(k>3)
+                    {
+                        x += 10;
+                        x += i * 8;
                     }
                     cardGo.transform.localPosition = new Vector3(x, y, 0);
                     //获取卡片组件
@@ -251,5 +263,74 @@ public class GameMap : MonoBehaviour
                 cards[i].onCollid(cards[j]);//碰撞检测
             }
         }
+    }
+ 
+    public void beginRand()
+    {
+        int leng = cards.Length;
+        Sequence sq = DOTween.Sequence();
+
+        for (int i = 0; i < leng; i++)
+        {
+            if (cards[i] != null && !cards[i].isIndeck)
+            {
+                cards[i].point = cards[i].transform.localPosition;//记录原位置
+                //同时移动到中心点
+                Tween tw1 = cards[i].transform.DOLocalMove(Vector3.zero, 0.15f).SetAutoKill(true);
+                sq.Join(tw1);//Append串行,一个接一个按顺序执行  Join并行, 同时执行
+
+            }
+        }
+        sq.AppendInterval(0.15f);
+        sq.AppendCallback(randCards);
+        for (int i = 0; i < leng; i++)
+        {
+            if (cards[i] != null && !cards[i].isIndeck)
+            {
+                //各自回到原位置
+                Tween tw2 = cards[i].transform.DOLocalMove(cards[i].point, 0.15f).SetAutoKill(true);
+                sq.Join(tw2);
+            }
+        }
+        sq.SetAutoKill(true);
+    }
+
+    public void randCards()
+    {
+        int leng = cards.Length;
+        int[] tempData = new int[totalNum - Deck.Instance.currentNum];
+        for (int i = 0, n = 0; i < leng; i++)
+        {
+            if (cards[i] != null && !cards[i].isIndeck)
+            {
+                tempData[n++] = cards[i].id;
+            }
+        }
+        leng = tempData.Length;
+        //随机打乱这个数组  洗牌算法
+        for (int i = 0; i < leng; i++)
+        {
+            int index = Random.Range(0, leng - i);
+            //两个数交换
+            //leng - 1
+            int temp = tempData[index];
+            tempData[index] = tempData[leng - 1 - i];
+            tempData[leng - 1 - i] = temp;
+        }
+        leng = cards.Length;
+        for (int i = 0, n = 0; i < leng; i++)
+        {
+            if (cards[i] != null && !cards[i].isIndeck)
+            {
+                cards[i].setID(tempData[n++], cards[i].layerNum);
+            }
+        }
+    }
+
+    public void deleteCard(int index)
+    {
+        GameObject.Destroy(cards[index].gameObject);
+        cards[index] = null;
+        data[index] = -1;
     }
 }
